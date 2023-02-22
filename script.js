@@ -1,6 +1,7 @@
 const itemForm = document.querySelector('#item-form');
 const itemInput = document.querySelector('#item-input');
 const itemList = document.querySelector('#item-list');
+const itemClear = document.querySelector('#clear');
 
 //Add Item Function
 const addItem = (e) => {
@@ -37,5 +38,21 @@ const createIcon = (classes) => {
     return icon;
 }
 
+//Remove Item
+const removeItem = (e) => {
+    if (e.target.parentElement.classList.contains('remove-item')) {
+        e.target.parentElement.parentElement.remove();
+    }
+}
+
+//Remove all items
+const removeAllItems = (e) => {
+    while (itemList.firstChild) {
+        itemList.removeChild(itemList.firstChild);
+    }
+}
+
 //Event Listeners
-itemForm.addEventListener('submit', addItem)
+itemForm.addEventListener('submit', addItem);
+itemList.addEventListener('click', removeItem);
+itemClear.addEventListener('click', removeAllItems)
